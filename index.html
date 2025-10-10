@@ -15,6 +15,13 @@
     <div class="hero-text">
       <h1>👨‍💻 Akhil Raj</h1>
       <p>Software Developer | Python Django | Cloud Deployment</p>
+
+      <!-- Personal details with dynamic age -->
+      <div class="hero-details">
+        📅 DOB: <time datetime="1998-05-17">17/05/1998</time>
+        (<span id="age"></span> yrs)
+      </div>
+
       <div class="buttons">
         <a href="#projects" class="btn">View My Work</a>
         <a href="assets/AkhilRaj_Resume.pdf" target="_blank" class="btn outline">Download Resume</a>
@@ -23,6 +30,18 @@
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dob = new Date('1998-05-17'); // YYYY-MM-DD for accuracy
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const m = today.getMonth() - dob.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+    const el = document.getElementById('age');
+    if (el) el.textContent = age;
+  });
+</script>
 
   <!-- About Section -->
   <section id="about">
