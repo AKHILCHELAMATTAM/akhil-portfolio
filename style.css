@@ -703,31 +703,33 @@ footer {
 
 [data-theme="xmas"] .santa-travel-container {
   display: block;
-  position: absolute;
+  position: fixed;
   top: 15px;
   left: 0;
   width: 100%;
-  height: 125px;
+  height: 120px;
   pointer-events: none;
   overflow: hidden;
-  z-index: 8;
+  z-index: 9990;
 }
 
 .santa-sleigh-group {
   position: absolute;
-  top: 12px;
-  left: -270px;
+  top: 5px;
+  left: 0;
   display: flex;
   align-items: center;
-  animation: santa-flight 25s linear infinite;
+  animation: santa-flight 16s linear infinite;
   will-change: transform;
 }
 
 .santa-sleigh-svg {
-  width: 220px;
-  height: 110px;
+  width: 210px;
+  height: 105px;
   filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
-  animation: santa-bob 2.8s ease-in-out infinite alternate;
+  animation: santa-bob 2.6s ease-in-out infinite alternate;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .santa-arm {
@@ -796,10 +798,10 @@ footer {
 
 @keyframes santa-flight {
   0% {
-    transform: translateX(0);
+    transform: translateX(-280px);
   }
   100% {
-    transform: translateX(calc(100vw + 340px));
+    transform: translateX(calc(100vw + 40px));
   }
 }
 

@@ -17,89 +17,13 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.2">
 </head>
 <body>
   <!-- Canvas for falling snow in Xmas Theme -->
   <canvas id="snow-canvas" aria-hidden="true"></canvas>
 
-  <!-- Interactive Hanging Lamp Theme Switcher -->
-  <aside id="lamp-container" class="lamp-container" aria-label="Interactive Lamp Theme Switcher">
-    <!-- Ceiling Mount Disc -->
-    <div class="lamp-mount" aria-hidden="true"></div>
-    <!-- Wire Cord -->
-    <div class="lamp-wire" aria-hidden="true"></div>
-    <!-- Lamp Head & Shade -->
-    <div class="lamp-shade-wrapper" aria-hidden="true">
-      <div class="lamp-cap"></div>
-      <div class="lamp-shade">
-        <div class="lamp-holly" title="Christmas Holly">
-          <span class="holly-leaf left">🍃</span>
-          <span class="holly-berry">🔴</span>
-          <span class="holly-leaf right">🍃</span>
-        </div>
-      </div>
-      <div class="lamp-bulb-socket"></div>
-      <div class="lamp-bulb">
-        <div class="lamp-filament"></div>
-      </div>
-      <div class="lamp-light-beam"></div>
-    </div>
-
-    <!-- Pull Cord & Thread -->
-    <div class="lamp-cord-wrapper" id="lamp-cord-wrapper">
-      <div class="lamp-cord-line" id="lamp-cord-line" aria-hidden="true"></div>
-      <button 
-        type="button" 
-        id="lamp-pull-handle" 
-        class="lamp-pull-handle" 
-        aria-label="Pull lamp cord to change theme. Current theme: Dark"
-        title="Pull thread to switch theme!">
-        <span class="lamp-bead" aria-hidden="true"></span>
-        <span class="lamp-tassel" aria-hidden="true"></span>
-      </button>
-    </div>
-
-    <!-- Theme Status Tooltip / Badge -->
-    <button 
-      type="button" 
-      id="lamp-tooltip" 
-      class="lamp-tooltip" 
-      aria-live="polite" 
-      title="Click or pull thread to change theme">
-      <span class="theme-icon" id="theme-icon">🌙</span>
-      <span class="theme-label-group">
-        <span class="theme-name" id="theme-name">Dark Mode</span>
-        <span class="theme-hint" id="theme-hint">Pull thread 💡</span>
-      </span>
-    </button>
-  </aside>
-
-  <!-- Header / Hero Section -->
-<header id="home">
-  <!-- Christmas Festive Garland -->
-  <div class="xmas-garland" aria-hidden="true">
-    <div class="garland-strand">
-      <span class="bulb red"></span>
-      <span class="bulb gold"></span>
-      <span class="bulb green"></span>
-      <span class="bulb blue"></span>
-      <span class="bulb red"></span>
-      <span class="bulb gold"></span>
-      <span class="bulb green"></span>
-      <span class="bulb blue"></span>
-      <span class="bulb red"></span>
-      <span class="bulb gold"></span>
-      <span class="bulb green"></span>
-      <span class="bulb blue"></span>
-      <span class="bulb red"></span>
-      <span class="bulb gold"></span>
-      <span class="bulb green"></span>
-      <span class="bulb blue"></span>
-    </div>
-  </div>
-
-  <!-- Santa & Polar Bear Travel Scene across the Christmas Sky -->
+  <!-- Santa & Polar Bear Travel Scene across the Christmas Sky (Viewport Fixed) -->
   <div class="santa-travel-container" aria-hidden="true">
     <div class="santa-sleigh-group" id="santa-travel-group" title="Santa & Bear delivering Christmas cheer!">
       <!-- Magic Sparkle Trail -->
@@ -206,6 +130,82 @@
           </g>
         </g>
       </svg>
+    </div>
+  </div>
+
+  <!-- Interactive Hanging Lamp Theme Switcher -->
+  <aside id="lamp-container" class="lamp-container" aria-label="Interactive Lamp Theme Switcher">
+    <!-- Ceiling Mount Disc -->
+    <div class="lamp-mount" aria-hidden="true"></div>
+    <!-- Wire Cord -->
+    <div class="lamp-wire" aria-hidden="true"></div>
+    <!-- Lamp Head & Shade -->
+    <div class="lamp-shade-wrapper" aria-hidden="true">
+      <div class="lamp-cap"></div>
+      <div class="lamp-shade">
+        <div class="lamp-holly" title="Christmas Holly">
+          <span class="holly-leaf left">🍃</span>
+          <span class="holly-berry">🔴</span>
+          <span class="holly-leaf right">🍃</span>
+        </div>
+      </div>
+      <div class="lamp-bulb-socket"></div>
+      <div class="lamp-bulb">
+        <div class="lamp-filament"></div>
+      </div>
+      <div class="lamp-light-beam"></div>
+    </div>
+
+    <!-- Pull Cord & Thread -->
+    <div class="lamp-cord-wrapper" id="lamp-cord-wrapper">
+      <div class="lamp-cord-line" id="lamp-cord-line" aria-hidden="true"></div>
+      <button 
+        type="button" 
+        id="lamp-pull-handle" 
+        class="lamp-pull-handle" 
+        aria-label="Pull lamp cord to change theme. Current theme: Dark"
+        title="Pull thread to switch theme!">
+        <span class="lamp-bead" aria-hidden="true"></span>
+        <span class="lamp-tassel" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Theme Status Tooltip / Badge -->
+    <button 
+      type="button" 
+      id="lamp-tooltip" 
+      class="lamp-tooltip" 
+      aria-live="polite" 
+      title="Click or pull thread to change theme">
+      <span class="theme-icon" id="theme-icon">🌙</span>
+      <span class="theme-label-group">
+        <span class="theme-name" id="theme-name">Dark Mode</span>
+        <span class="theme-hint" id="theme-hint">Pull thread 💡</span>
+      </span>
+    </button>
+  </aside>
+
+  <!-- Header / Hero Section -->
+<header id="home">
+  <!-- Christmas Festive Garland -->
+  <div class="xmas-garland" aria-hidden="true">
+    <div class="garland-strand">
+      <span class="bulb red"></span>
+      <span class="bulb gold"></span>
+      <span class="bulb green"></span>
+      <span class="bulb blue"></span>
+      <span class="bulb red"></span>
+      <span class="bulb gold"></span>
+      <span class="bulb green"></span>
+      <span class="bulb blue"></span>
+      <span class="bulb red"></span>
+      <span class="bulb gold"></span>
+      <span class="bulb green"></span>
+      <span class="bulb blue"></span>
+      <span class="bulb red"></span>
+      <span class="bulb gold"></span>
+      <span class="bulb green"></span>
+      <span class="bulb blue"></span>
     </div>
   </div>
 
@@ -706,6 +706,6 @@
     <p>© 2024 Akhil Raj | Built with ❤️ and a bit of coffee</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2.2"></script>
 </body>
 </html>

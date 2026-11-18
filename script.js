@@ -460,6 +460,13 @@ function updateThemeUI(theme) {
 
   if (theme === 'xmas') {
     startSnow();
+    // Restart Santa & Bear flight from the left edge so they appear right away
+    const santaEl = document.getElementById('santa-travel-group');
+    if (santaEl) {
+      santaEl.style.animation = 'none';
+      void santaEl.offsetWidth; // trigger browser reflow
+      santaEl.style.animation = '';
+    }
   } else {
     stopSnow();
   }
