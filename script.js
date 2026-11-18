@@ -167,7 +167,27 @@ function initSnowCanvas() {
     });
   }
 
-  // 3. Static Twinkling Constellation Stars in the background
+  // 3. Fluffy 3D Falling Snowballs with Frost Shading
+  const SNOWBALL_COUNT = 16;
+  for (let i = 0; i < SNOWBALL_COUNT; i++) {
+    particles.push({
+      type: 'snowball',
+      x: Math.random() * snowCanvas.width,
+      y: Math.random() * snowCanvas.height,
+      radius: Math.random() * 5 + 6.5, // 6.5px to 11.5px radius
+      speedY: Math.random() * 0.85 + 0.55,
+      swing: Math.random() * Math.PI * 2,
+      swingSpeed: Math.random() * 0.016 + 0.008,
+      baseOpacity: Math.random() * 0.25 + 0.75,
+      twinklePhase: 0,
+      twinkleSpeed: 0,
+      rotation: 0,
+      rotationSpeed: 0,
+      hue: 'snowball'
+    });
+  }
+
+  // 4. Static Twinkling Constellation Stars in the background
   for (let i = 0; i < BG_TWINKLE_COUNT; i++) {
     backgroundStars.push({
       x: Math.random() * snowCanvas.width,
@@ -301,7 +321,23 @@ function renderSnow() {
 
     snowCtx.save();
 
-    if (p.type === 'snow') {
+    if (p.type === 'snowball') {
+      // Fluffy 3D Shaded Snowball with frost blue rim & specular highlight
+      const snowGrad = snowCtx.createRadialGradient(
+        p.x - p.radius * 0.35, p.y - p.radius * 0.35, p.radius * 0.1,
+        p.x, p.y, p.radius
+      );
+      snowGrad.addColorStop(0, `rgba(255, 255, 255, ${currentOpacity})`);
+      snowGrad.addColorStop(0.7, `rgba(241, 245, 249, ${currentOpacity * 0.95})`);
+      snowGrad.addColorStop(1, `rgba(186, 230, 253, ${currentOpacity * 0.85})`);
+
+      snowCtx.beginPath();
+      snowCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      snowCtx.fillStyle = snowGrad;
+      snowCtx.shadowColor = 'rgba(224, 242, 254, 0.75)';
+      snowCtx.shadowBlur = 8;
+      snowCtx.fill();
+    } else if (p.type === 'snow') {
       // Soft round snowflake
       snowCtx.beginPath();
       snowCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
@@ -568,8 +604,135 @@ if (lampTooltip) {
   });
 }
 
+// Click on Santa & Bear Sleigh plays a cheerful holiday jingle
+const santaGroupEl = document.getElementById('santa-travel-group');
+if (santaGroupEl) {
+  santaGroupEl.style.cursor = 'pointer';
+  santaGroupEl.style.pointerEvents = 'auto';
+  santaGroupEl.addEventListener('click', () => {
+    playLampSound('xmas');
+  });
+}
+
 // ==========================================================================
-// 6. Initialize Theme State on Page Load
+// 6. Interactive Snowball Launcher (Toss & Splat with Sound)
+// ==========================================================================
+function playSnowballSound() {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    if (ctx.state === 'suspended') ctx.resume();
+    const now = ctx.currentTime;
+
+    // 1. Soft whoosh throw sound (pitch sweep down)
+    const whooshOsc = ctx.createOscillator();
+    const whooshGain = ctx.createGain();
+    whooshOsc.type = 'sine';
+    whooshOsc.frequency.setValueAtTime(360, now);
+    whooshOsc.frequency.exponentialRampToValueAtTime(140, now + 0.22);
+    whooshGain.gain.setValueAtTime(0.18, now);
+    whooshGain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+    whooshOsc.connect(whooshGain);
+    whooshGain.connect(ctx.destination);
+    whooshOsc.start(now);
+    whooshOsc.stop(now + 0.23);
+
+    // 2. Soft impact "poof / splat" sound
+    setTimeout(() => {
+      try {
+        const impactOsc = ctx.createOscillator();
+        const impactGain = ctx.createGain();
+        impactOsc.type = 'triangle';
+        impactOsc.frequency.setValueAtTime(200, ctx.currentTime);
+        impactOsc.frequency.exponentialRampToValueAtTime(60, ctx.currentTime + 0.12);
+        impactGain.gain.setValueAtTime(0.22, ctx.currentTime);
+        impactGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+        impactOsc.connect(impactGain);
+        impactGain.connect(ctx.destination);
+        impactOsc.start(ctx.currentTime);
+        impactOsc.stop(ctx.currentTime + 0.13);
+      } catch (e) {}
+    }, 480);
+  } catch (err) {}
+}
+
+function launchSnowball() {
+  const launcherBtn = document.getElementById('snowball-btn');
+  if (!launcherBtn) return;
+
+  const rect = launcherBtn.getBoundingClientRect();
+  const startX = rect.left + rect.width / 2;
+  const startY = rect.top + rect.height / 2;
+
+  // Target spot across the visible viewport
+  const targetX = Math.random() * (window.innerWidth * 0.6) + window.innerWidth * 0.2;
+  const targetY = Math.random() * (window.innerHeight * 0.5) + window.innerHeight * 0.15;
+
+  playSnowballSound();
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    createSnowballSplat(targetX, targetY);
+    return;
+  }
+
+  const ball = document.createElement('div');
+  ball.className = 'flying-snowball';
+  ball.style.left = `${startX}px`;
+  ball.style.top = `${startY}px`;
+  document.body.appendChild(ball);
+
+  // Trigger smooth arc flight to target
+  requestAnimationFrame(() => {
+    ball.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px) scale(1.3)`;
+  });
+
+  setTimeout(() => {
+    createSnowballSplat(targetX, targetY);
+    if (ball.parentNode) ball.parentNode.removeChild(ball);
+  }, 600);
+}
+
+function createSnowballSplat(x, y) {
+  const splat = document.createElement('div');
+  splat.className = 'snowball-splat';
+  splat.style.left = `${x}px`;
+  splat.style.top = `${y}px`;
+
+  const center = document.createElement('div');
+  center.className = 'splat-center';
+  splat.appendChild(center);
+
+  // 8 bursting micro snow shards
+  for (let i = 0; i < 8; i++) {
+    const flake = document.createElement('div');
+    flake.className = 'splat-flake';
+    const angle = (i * Math.PI) / 4 + (Math.random() - 0.5) * 0.35;
+    const dist = Math.random() * 32 + 20;
+    const tx = Math.cos(angle) * dist;
+    const ty = Math.sin(angle) * dist;
+    flake.style.setProperty('--tx', `${tx}px`);
+    flake.style.setProperty('--ty', `${ty}px`);
+    splat.appendChild(flake);
+  }
+
+  document.body.appendChild(splat);
+  setTimeout(() => {
+    if (splat.parentNode) splat.parentNode.removeChild(splat);
+  }, 1100);
+}
+
+const snowballBtnEl = document.getElementById('snowball-btn');
+if (snowballBtnEl) {
+  snowballBtnEl.addEventListener('click', e => {
+    e.preventDefault();
+    launchSnowball();
+  });
+}
+
+// ==========================================================================
+// 7. Initialize Theme State on Page Load
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
   const initialTheme = getCurrentTheme();
