@@ -100,7 +100,46 @@
   </div>
 
   <div class="container hero">
-    <img src="assets/profile.jpg" alt="Akhil Raj" class="profile-pic">
+    <div class="profile-wrapper">
+      <!-- Santa Hat for Xmas Theme -->
+      <div class="xmas-santa-hat" aria-hidden="true">
+        <svg viewBox="0 0 100 85" class="santa-hat-svg">
+          <defs>
+            <filter id="hat-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.35"/>
+            </filter>
+          </defs>
+          <path d="M18,60 C22,35 45,15 75,18 C85,19 92,26 90,34 C88,40 78,42 74,40 C55,30 40,45 25,60 Z" fill="#dc2626" filter="url(#hat-shadow)"/>
+          <path d="M22,58 C26,38 46,20 73,21 C76,28 62,38 45,46 C32,52 26,56 22,58 Z" fill="#b91c1c"/>
+          <rect x="10" y="56" width="72" height="18" rx="9" fill="#f8fafc" filter="url(#hat-shadow)"/>
+          <circle cx="88" cy="36" r="10" fill="#ffffff" filter="url(#hat-shadow)"/>
+        </svg>
+      </div>
+
+      <!-- Festive Wreath Ring / Holiday Aura -->
+      <div class="xmas-profile-wreath" aria-hidden="true"></div>
+
+      <!-- Orbiting Fairy Lights around Profile Picture -->
+      <div class="xmas-profile-lights" aria-hidden="true">
+        <span class="p-bulb p-red"></span>
+        <span class="p-bulb p-gold"></span>
+        <span class="p-bulb p-green"></span>
+        <span class="p-bulb p-blue"></span>
+        <span class="p-bulb p-gold"></span>
+        <span class="p-bulb p-red"></span>
+        <span class="p-bulb p-green"></span>
+        <span class="p-bulb p-blue"></span>
+      </div>
+
+      <img src="assets/profile.jpg" alt="Akhil Raj" class="profile-pic">
+
+      <!-- Festive Ribbon Bow & Holly at bottom -->
+      <div class="xmas-profile-bow" aria-hidden="true">
+        <span class="holly-leaves">🍃</span>
+        <span class="bow-center">🎀</span>
+        <span class="holly-leaves">🍃</span>
+      </div>
+    </div>
     <div class="hero-text">
       <div class="xmas-badge" aria-hidden="true">🎄 Merry Christmas & Happy Holidays! ✨</div>
       <h1>👨‍💻 Akhil Raj</h1>
@@ -204,22 +243,41 @@
   <section id="experience">
       <div class="container">
         <h2>Work Experience</h2>
-        <div class="job">
-        <h3>Freelance Software Developer</h3>
-        <small>Jun 2025 – Present</small>
-        <ul>
-          <li>Developing custom web applications using Python, Django, PHP, JavaScript, and MySQL for clients across various industries.</li>
-          <li>Providing maintenance, debugging, feature enhancements, and technical support for live production applications.</li>
-          <li>Designing and developing responsive WordPress websites and high-converting landing pages for businesses and startups.</li>
-          <li>Developing, customizing, and maintaining ERP software modules, including inventory, sales, HR, finance, and customer management systems.</li>
-          <li>Providing ERP implementation, customization, user support, bug fixing, and performance optimization for existing business applications.</li>
-          <li>Building RESTful APIs and integrating third-party services, payment gateways, SMS, email, and external APIs.</li>
-          <li>Assisting college students with final-year projects involving Python, Django, PHP, Machine Learning, Data Science, and database development.</li>
-          <li>Deploying and managing applications on AWS, Linux servers, shared hosting, and cloud platforms.</li>
-          <li>Collaborating directly with clients to gather requirements, deliver projects on schedule, and provide ongoing technical support and training.</li>
-          <li>Managing project documentation, source code using Git/GitHub, and ensuring secure, scalable, and maintainable software solutions.</li>
-        </ul>
-      </div>
+          <div class="job">
+              <h3>Software Developer - WebStrike</h3>
+              <small>Jun 2025 – Present</small>
+              <ul>
+                  <li>Developing custom web applications using Python, Django, PHP, JavaScript, and MySQL for clients across various industries.</li>
+
+                  <li>Developing cross-platform mobile applications using Flutter and Dart for Android devices, including APK development, testing, and deployment.</li>
+
+                  <li>Designing and developing responsive Android applications with user authentication, REST API integration, database connectivity, and dynamic UI components.</li>
+
+                  <li>Building and integrating Django REST APIs to connect Flutter mobile applications with backend services and databases.</li>
+
+                  <li>Providing maintenance, debugging, feature enhancements, and technical support for live production web and mobile applications.</li>
+
+                  <li>Designing and developing responsive WordPress websites and high-converting landing pages for businesses and startups.</li>
+
+                  <li>Developing, customizing, and maintaining ERP software modules, including inventory, sales, HR, finance, and customer management systems.</li>
+
+                  <li>Providing ERP implementation, customization, user support, bug fixing, and performance optimization for existing business applications.</li>
+
+                  <li>Building RESTful APIs and integrating third-party services, payment gateways, UPI payments, SMS, email, and external APIs.</li>
+
+                  <li>Developing mobile application features such as GPS-based live location tracking, attendance management, push notifications, and digital receipt generation.</li>
+
+                  <li>Assisting college students with final-year projects involving Python, Django, PHP, Flutter, Machine Learning, Data Science, and database development.</li>
+
+                  <li>Deploying and managing web applications, backend services, and APIs on AWS EC2, Linux servers, shared hosting, and cloud platforms.</li>
+
+                  <li>Publishing and distributing Android APK builds for client testing and deployment, including application updates and maintenance.</li>
+
+                  <li>Collaborating directly with clients to gather requirements, deliver projects on schedule, and provide ongoing technical support and training.</li>
+
+                  <li>Managing project documentation, source code using Git/GitHub, and ensuring secure, scalable, and maintainable software solutions.</li>
+              </ul>
+          </div>
       <div class="job">
         <h3>Software Engineer – Cabal Technology</h3>
         <small>Nov 2023 – May 2025</small>
@@ -261,22 +319,50 @@
     <div class="container">
       <h2>Projects</h2>
       <div class="project-grid">
-        <div class="project-card">
+      <div class="project-card">
+          <h3>WeHelp – NGO Field Operations Android App</h3>
+          <p>
+              A Flutter-based Android application integrated with Django REST APIs
+              for field-agent management, live GPS tracking, attendance,
+              telecalling, UPI donations, and digital receipt generation.
+              Includes a Django Admin dashboard for real-time monitoring
+              and management.
+          </p>
+      </div>
+      <div class="project-card">
           <h3>Social Media Platform (Django)</h3>
-          <p>Authentication, posting, and interaction features, backed by Django REST APIs.</p>
-        </div>
-        <div class="project-card">
+          <p>
+              Developed a social media web application with user registration,
+              authentication, profile management, post creation, likes,
+              comments, and user interactions using Django and REST APIs.
+          </p>
+      </div>
+
+      <div class="project-card">
           <h3>URL Shortener (Django)</h3>
-          <p>Custom short codes, redirection, and database persistence for quick link sharing.</p>
-        </div>
-        <div class="project-card">
-          <h3>Book Rental System</h3>
-          <p>Implemented rent requests, authentication, and tracking features with admin dashboard.</p>
-        </div>
-        <div class="project-card">
+          <p>
+              Built a URL shortening application with custom short codes,
+              automatic URL redirection, database management, and
+              efficient link-sharing functionality using Django.
+          </p>
+      </div>
+
+      <div class="project-card">
+          <h3>Book Rental Management System</h3>
+          <p>
+              Developed a book rental platform with user authentication,
+              book listings, rental requests, rental tracking, and an
+              admin dashboard for managing books and rental activities.
+          </p>
+      </div>
+
+      <div class="project-card">
           <h3>Flask File Upload API</h3>
-          <p>API for file uploads with persistent storage and secure handling.</p>
-        </div>
+          <p>
+              Created a REST API using Flask to handle file uploads,
+              validate file types, manage secure file storage, and
+              retrieve uploaded files through API endpoints.
+          </p>
       </div>
     </div>
   </section>
