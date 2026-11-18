@@ -5,14 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Akhil Raj | Portfolio</title>
   <link rel="icon" type="image/png" href="assets/logo.png">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // Immediate FOUC prevention: restore stored theme or default to dark
+    (function () {
+      try {
+        const theme = localStorage.getItem('portfolio-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        const meta = document.querySelector('meta[name="color-scheme"]');
+        if (meta) meta.content = (theme === 'light') ? 'light' : 'dark';
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Canvas for falling snow in Xmas Theme -->
+  <canvas id="snow-canvas" aria-hidden="true"></canvas>
+
+  <!-- Interactive Hanging Lamp Theme Switcher -->
+  <aside id="lamp-container" class="lamp-container" aria-label="Interactive Lamp Theme Switcher">
+    <!-- Ceiling Mount Disc -->
+    <div class="lamp-mount" aria-hidden="true"></div>
+    <!-- Wire Cord -->
+    <div class="lamp-wire" aria-hidden="true"></div>
+    <!-- Lamp Head & Shade -->
+    <div class="lamp-shade-wrapper" aria-hidden="true">
+      <div class="lamp-cap"></div>
+      <div class="lamp-shade">
+        <div class="lamp-holly" title="Christmas Holly">
+          <span class="holly-leaf left">🍃</span>
+          <span class="holly-berry">🔴</span>
+          <span class="holly-leaf right">🍃</span>
+        </div>
+      </div>
+      <div class="lamp-bulb-socket"></div>
+      <div class="lamp-bulb">
+        <div class="lamp-filament"></div>
+      </div>
+      <div class="lamp-light-beam"></div>
+    </div>
+
+    <!-- Pull Cord & Thread -->
+    <div class="lamp-cord-wrapper" id="lamp-cord-wrapper">
+      <div class="lamp-cord-line" id="lamp-cord-line" aria-hidden="true"></div>
+      <button 
+        type="button" 
+        id="lamp-pull-handle" 
+        class="lamp-pull-handle" 
+        aria-label="Pull lamp cord to change theme. Current theme: Dark"
+        title="Pull thread to switch theme!">
+        <span class="lamp-bead" aria-hidden="true"></span>
+        <span class="lamp-tassel" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Theme Status Tooltip / Badge -->
+    <button 
+      type="button" 
+      id="lamp-tooltip" 
+      class="lamp-tooltip" 
+      aria-live="polite" 
+      title="Click or pull thread to change theme">
+      <span class="theme-icon" id="theme-icon">🌙</span>
+      <span class="theme-label-group">
+        <span class="theme-name" id="theme-name">Dark Mode</span>
+        <span class="theme-hint" id="theme-hint">Pull thread 💡</span>
+      </span>
+    </button>
+  </aside>
+
   <!-- Header / Hero Section -->
 <header id="home">
+  <!-- Christmas Festive Garland -->
+  <div class="xmas-garland" aria-hidden="true">
+    <div class="garland-strand">
+      <span class="bulb red"></span>
+      <span class="bulb gold"></span>
+      <span class="bulb green"></span>
+      <span class="bulb blue"></span>
+      <span class="bulb red"></span>
+      <span class="bulb gold"></span>
+      <span class="bulb green"></span>
+      <span class="bulb blue"></span>
+      <span class="bulb red"></span>
+      <span class="bulb gold"></span>
+      <span class="bulb green"></span>
+      <span class="bulb blue"></span>
+      <span class="bulb red"></span>
+      <span class="bulb gold"></span>
+      <span class="bulb green"></span>
+      <span class="bulb blue"></span>
+    </div>
+  </div>
+
   <div class="container hero">
     <img src="assets/profile.jpg" alt="Akhil Raj" class="profile-pic">
     <div class="hero-text">
+      <div class="xmas-badge" aria-hidden="true">🎄 Merry Christmas & Happy Holidays! ✨</div>
       <h1>👨‍💻 Akhil Raj</h1>
       <p>Software Developer | Python Django | Cloud Deployment</p>
       <p>| Data Science & Data Engineer</p>
@@ -205,27 +295,25 @@
   </section>
 
   <!-- Certificates -->
-<!-- Certificates -->
 <section id="certificates">
   <div class="container">
     <h2>Certificates</h2>
     <div class="cert-grid">
 
-
-                        <!-- Certificate 8 Data Science and Data Engineering.-->
+      <!-- Certificate 8 Data Science and Data Engineering.-->
       <div class="cert-card">
         <div class="cert-inner">
           <div class="cert-front">
             <h3>Certificate on Data Science & Data Engineering.</h3>
-            <p>Developing practical skills in Data Science, Data Engineering, Python, SQL, data analysis, and machine learning.</p>          </div>
+            <p>Developing practical skills in Data Science, Data Engineering, Python, SQL, data analysis, and machine learning.</p>
+          </div>
           <div class="cert-back">
-            <img src="assets/certificates/AkhilDataScience.png" alt="Data Science and Data Engineering
-             Certificate">
+            <img src="assets/certificates/AkhilDataScience.png" alt="Data Science and Data Engineering Certificate">
           </div>
         </div>
       </div>
 
-                  <!-- Certificate 7-->
+      <!-- Certificate 7-->
       <div class="cert-card">
         <div class="cert-inner">
           <div class="cert-front">
@@ -238,8 +326,7 @@
         </div>
       </div>
 
-
-            <!-- Certificate 6 -->
+      <!-- Certificate 6 -->
       <div class="cert-card">
         <div class="cert-inner">
           <div class="cert-front">
@@ -344,48 +431,39 @@
   <div class="container">
     <h2>Notes</h2>
     <ul class="notes-list">
-
       <li>
         <a href="assets/Notes/Python_Note.pdf" download>
           📘 Python & Django Notes
         </a>
       </li>
-
       <li>
         <a href="assets/Notes/UI.pdf" download>
           📗 HTML & CSS Notes
         </a>
       </li>
-
       <li>
         <a href="assets/Notes/dbms.pdf" download>
           📙 Database (MySQL & SQLite) Notes
         </a>
       </li>
-
       <li>
         <a href="assets/Notes/git.pdf" download>
           📕 Git & GitHub Notes
         </a>
       </li>
-
       <li>
         <a href="assets/Notes/javaScript.pdf" download>
           📒 JavaScript Basics Notes
         </a>
       </li>
-
       <li>
         <a href="assets/Notes/java.pdf" download>
           📒 Java Basics Notes
         </a>
       </li>
-
     </ul>
   </div>
 </section>
-
-
 
   <!-- Whatapp Sticker -->
 <section id="whatapp">
